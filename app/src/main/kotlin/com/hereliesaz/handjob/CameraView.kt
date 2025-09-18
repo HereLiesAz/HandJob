@@ -1,4 +1,4 @@
-package com.example.handmannequin
+package com.hereliesaz.handjob
 
 import android.content.Context
 import android.util.Log

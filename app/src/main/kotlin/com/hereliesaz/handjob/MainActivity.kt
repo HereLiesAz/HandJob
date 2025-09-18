@@ -1,4 +1,4 @@
-package com.example.handmannequin
+package com.hereliesaz.handjob
 
 import android.Manifest
 import android.os.Bundle
@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.handmannequin.ui.theme.HandMannequinTheme
+import com.hereliesaz.handjob.ui.theme.HandMannequinTheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -63,27 +63,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HandMannequinApp(viewModel: HandPoseViewModel) {
     val handResult by viewModel.handLandmarkerResult.collectAsState()
-    val modelRotationX by viewModel.modelRotationX.collectAsState()
-    val modelRotationY by viewModel.modelRotationY.collectAsState()
-    val modelRotationZ by viewModel.modelRotationZ.collectAsState()
-    val lightRotation by viewModel.lightRotation.collectAsState()
-    val lightIntensity by viewModel.lightIntensity.collectAsState()
-    val lightDiffusion by viewModel.lightDiffusion.collectAsState()
-    val ambientBrightness by viewModel.ambientBrightness.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        SceneViewer(
-            modifier = Modifier.fillMaxSize(),
-            handResult = handResult,
-            modelRotationX = modelRotationX,
-            modelRotationY = modelRotationY,
-            modelRotationZ = modelRotationZ,
-            lightRotation = lightRotation,
-            lightIntensity = lightIntensity,
-            lightDiffusion = lightDiffusion,
-            ambientBrightness = ambientBrightness
-        )
-
         // Camera preview in a corner
         CameraView(
             modifier = Modifier
@@ -95,44 +76,14 @@ fun HandMannequinApp(viewModel: HandPoseViewModel) {
             }
         )
 
-        // Controls
-        Column(
+        // Placeholder for the 3D view
+        Box(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(16.dp)
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
         ) {
-            ControlSlider(label = "Model Rot X", value = modelRotationX, onValueChange = viewModel::onModelRotationXChange, range = 0f..360f)
-            ControlSlider(label = "Model Rot Y", value = modelRotationY, onValueChange = viewModel::onModelRotationYChange, range = 0f..360f)
-            ControlSlider(label = "Model Rot Z", value = modelRotationZ, onValueChange = viewModel::onModelRotationZChange, range = 0f..360f)
-            ControlSlider(label = "Light Angle", value = lightRotation, onValueChange = viewModel::onLightRotationChange, range = 0f..360f)
-            ControlSlider(label = "Light Power", value = lightIntensity, onValueChange = viewModel::onLightIntensityChange, range = 10_000f..200_000f)
-            ControlSlider(label = "Light Diffusion", value = lightDiffusion, onValueChange = viewModel::onLightDiffusionChange, range = 0f..1f)
-            ControlSlider(label = "Ambient", value = ambientBrightness, onValueChange = viewModel::onAmbientBrightnessChange, range = 0f..1f)
+            Text("3D View Placeholder")
         }
-    }
-}
-
-@Composable
-private fun ControlSlider(
-    label: String,
-    value: Float,
-    onValueChange: (Float) -> Unit,
-    range: ClosedFloatingPointRange<Float>
-) {
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = label,
-            color = Color.White,
-            fontSize = 12.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.width(80.dp)
-        )
-        Slider(
-            value = value,
-            onValueChange = onValueChange,
-            valueRange = range,
-            modifier = Modifier.weight(1f)
-        )
     }
 }
