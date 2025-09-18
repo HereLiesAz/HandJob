@@ -33,7 +33,7 @@ At this point, you're ready to make your changes! Feel free to ask for help; eve
 At this point, you should switch back to your master branch and make sure it's up to date with HandJob's master branch:
 
 ```sh
-git remote add upstream https://github.com/hereliesaz/hand-job.git
+git remote add upstream https://github.com/hereliesaz/handjob.git
 git checkout master
 git pull upstream master
 ```
