@@ -71,9 +71,6 @@ dependencies {
     // MediaPipe
     implementation(libs.mediapipe.tasks.vision)
 
-    // SceneView
-    implementation(libs.sceneview)
-    implementation(libs.kotlin.math)
 
     // Permissions
     implementation(libs.accompanist.permissions)
