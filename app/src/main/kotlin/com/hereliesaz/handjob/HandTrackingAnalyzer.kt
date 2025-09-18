@@ -21,6 +21,8 @@ class HandTrackingAnalyzer(
     private val handLandmarker: HandLandmarker
 
     init {
+        // TODO: The GPU delegate is currently disabled due to a build issue.
+        // This may cause performance issues on some devices.
         val baseOptions = BaseOptions.builder()
             .setModelAssetPath("hand_landmarker.task")
             .build()
