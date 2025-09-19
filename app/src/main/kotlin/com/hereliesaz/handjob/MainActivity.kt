@@ -23,6 +23,8 @@ import com.hereliesaz.handjob.ui.theme.HandMannequinTheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import io.github.sceneview.ar.ARScene
+import io.github.sceneview.rememberEngine
 
 class MainActivity : ComponentActivity() {
 
@@ -63,6 +65,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HandMannequinApp(viewModel: HandPoseViewModel) {
     val handResult by viewModel.handLandmarkerResult.collectAsState()
+    val engine = rememberEngine()
 
     Box(modifier = Modifier.fillMaxSize()) {
         // Camera preview in a corner
@@ -76,14 +79,10 @@ fun HandMannequinApp(viewModel: HandPoseViewModel) {
             }
         )
 
-        // Placeholder for the 3D view
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("3D View Placeholder")
-        }
+        // 3D view
+        ARScene(
+            modifier = Modifier.fillMaxSize(),
+            engine = engine
+        )
     }
 }
