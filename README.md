@@ -30,3 +30,7 @@ Contributions are welcome! Please see the [CONTRIBUTING.md](CONTRIBUTING.md) fil
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Android updates
+
+Release builds check stable GitHub releases with AzNavRail 12.5. The check does not access camera frames or hand landmarks. Debug builds skip update checks.

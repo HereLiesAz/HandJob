@@ -2,6 +2,7 @@ package com.hereliesaz.handjob
 
 import android.Manifest
 import android.os.Bundle
+import com.hereliesaz.aznavrail.updates.AzUpdateChecker
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -33,6 +34,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AzUpdateChecker.check(this, "HereLiesAz/HandJob")
         setContent {
             HandMannequinTheme {
                 Surface(
